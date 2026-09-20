@@ -1,4 +1,4 @@
-aws_region = "ap-southeast-2"
+AWS_REGION = "ap-southeast-2"
 
 ec2_instance_name = "tbdp-bi-dev-ec2"
 ec2_instance_type = "t3.micro"
