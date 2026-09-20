@@ -12,7 +12,8 @@ module "ec2_module" {
 module "dynamodb_module" {
   source = "./modules/dynamodb-module"
 
-  table_name   = var.dynamodb_table_name
+  table_name = var.dynamodb_table_name
+
   environment  = "dev"
   project_name = "TBDP-BI"
 }
