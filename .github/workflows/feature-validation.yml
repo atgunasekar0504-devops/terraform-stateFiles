@@ -1,4 +1,4 @@
-name: TBDP-BI Terraform Feature Validation
+name: Terraform Feature Validation
 
 on:
   push:
@@ -6,15 +6,16 @@ on:
       - "feature/**"
 
 jobs:
-  terraform-validation:
+
+  validate:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -23,14 +24,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Terraform Init
-        run: terraform init
+      - run: terraform init
 
-      - name: Terraform Format Check
-        run: terraform fmt -check -recursive
+      - run: terraform fmt -check
 
-      - name: Terraform Validate
-        run: terraform validate
+      - run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan
+      - run: terraform plan
